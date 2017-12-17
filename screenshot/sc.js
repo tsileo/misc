@@ -1,9 +1,11 @@
+#!/usr/bin/env node
+
 const puppeteer = require('puppeteer');
 const url = process.argv[2];
 const o = process.argv[3];
 
 if (o == undefined || url == undefined) {
-    console.log('sc.js <url> <output file>');
+    console.log('sc <url> <output file>');
     process.exit(2);
 }
 

@@ -1,6 +1,6 @@
 # Screenshot API for Broxy
 
-[Gluapp](https://github.com/tsileo/gluapp) powered screenshot capture API powered by Chrome Headless.
+[Gluapp](https://github.com/tsileo/gluapp) app that export an API for capturing screenshot of website using Chrome Headless.
 
 Returns a 1280px wide full-page screenshot in PNG format.
 

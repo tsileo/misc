@@ -1,7 +1,5 @@
 local cmd = require('cmd')
 
-local filename = random_string(16)
-
 local conf = read_yaml('conf.yaml')
 
 if conf.api_key then
@@ -12,6 +10,7 @@ if conf.api_key then
     end
 end
 
+local filename = random_string(16)
 local err = cmd.run('node ' .. conf.script_path .. ' '.. app.request:args():get('url') ..' ' .. filename .. '.png')
 
 if err ~= '' then

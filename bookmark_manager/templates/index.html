@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="https://unpkg.com/purecss@1.0.0/build/pure-min.css">
+</head>
+<body style="padding:0 20px;">
+<h1><a style="color:#001f3f;text-decoration:none;" href="/api/apps/bkapp/">Bookmarks</a></h1>
+<form class="pure-form" method="POST"  style="margin-bottom:20px;">
+  <input type="text" name="q" value="{{.q}}">
+  <button type="submit" class="pure-button">Search</button>
+</form>
+{{ range .docs }}
+<div style="margin-bottom: 20px;">
+<a href="{{.url}}" style="text-decoration:none;font-size:1.2em;color:#0074D9;">{{.title}}</a>
+{{ if .description }}
+<div style="color:#333;">{{.description}}</div>
+{{ end }}
+{{ if .tags }}
+<div style="color:#FF851B;">{{ range .tags }}#{{.}} {{ end }}</div>
+{{ end }}
+<div style="color:#666;"><span class="ago" datetime="{{._created}}">{{ ._created }}</span>
+<a style="text-decoration:none;color:#999;" href="{{ .screenshot_url }}">[screenshot]</a>
+<a style="text-decoration:none;color:#999;" href="{{ .pdf_url }}">[pdf]</a>
+</div>
+</div>
+{{ end }}
+<script src="https://unpkg.com/timeago.js@3.0.0/dist/timeago.min.js"></script>
+<script>
+timeago().render(document.querySelectorAll('.ago'));
+</script>
+</body>
+</html>

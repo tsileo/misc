@@ -5,7 +5,7 @@ const url = process.argv[2];
 const o = process.argv[3];
 
 if (o == undefined || url == undefined) {
-    console.log('sc <url> <output file>');
+    console.log('sc <url> <output file base>');
     process.exit(2);
 }
 
@@ -15,8 +15,8 @@ async function run() {
   page.setViewport({width: 1280, height: 800});
 
   await page.goto(url);
-  await page.screenshot({ path: o, fullPage: true });
-  await page.pdf({path: 'hn.pdf', format: 'A4'});
+  await page.screenshot({ path: o + '.png', fullPage: true });
+  await page.pdf({path: o + '.pdf', format: 'A4'});
 
   browser.close();
 }

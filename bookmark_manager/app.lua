@@ -25,7 +25,7 @@ end
 router:get('/', function(params)
   local bookmarks = docstore.col(col_name)
   local docs, pointers, cursor = bookmarks:query()
-  local out = tpl.render('index.html', { docs = join(docs, pointers) })
+  local out = tpl.render('index.html', 'layout.html', { docs = join(docs, pointers) })
   app.response:write(out)
 end)
 
@@ -61,14 +61,14 @@ router:post('/', function(params)
     end
   end
   local docs, pointers, cursor = bookmarks:query(nil, nil, matchFunc)
-  local out = tpl.render('index.html', { q = qs, docs = join(docs, pointers) })
+  local out = tpl.render('index.html', 'layout.html', { q = qs, docs = join(docs, pointers) })
   app.response:write(out)
 end)
 
 -- "New bookmark" form
 router:get('/add', function(params)
   local args = app.request:args()
-  local out = tpl.render('add.html', {
+  local out = tpl.render('add.html', 'layout.html', {
     url = args:get('url'),
     title = args:get('title'),
     description = args:get('description'),
@@ -91,7 +91,7 @@ router:post('/add', function(params)
   end)
 
   if #docs > 0 then
-      local out = tpl.render('already_bookmarked.html', { url = url, docs = join(docs, pointers) })
+      local out = tpl.render('already_bookmarked.html', 'layout.html', { url = url, docs = join(docs, pointers) })
       app.response:write(out)
       return
   end

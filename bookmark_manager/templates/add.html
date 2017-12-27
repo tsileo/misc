@@ -1,13 +1,4 @@
-<!doctype html>
-<html lang="en">
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link rel="stylesheet" href="https://unpkg.com/purecss@1.0.0/build/pure-min.css">
-</head>
-<body>
-<div style="padding:0 20px">
-<h1><a style="color:#001f3f;text-decoration:none;" href="/api/apps/bkapp/">Bookmarks</a></h1>
+{{ define "content" }}
 <form class="pure-form pure-form-stacked" method="POST" action="">
 	<fieldset>
 		<legend>New bookmark</legend>
@@ -19,9 +10,7 @@
 		<input id="tags" name="tags" type="text" placeholder="space-separated tags">
         <label for="description">Description</label>
 		<textarea placeholder="Description" name="description">{{.description}}</textarea>
-		<button type="submit" class="pure-button pure-button-primary">Submit</button>
+		<button type="submit" class="pure-button">Submit</button>
 	</fieldset>
 </form>
-</div>
-</body>
-</html>
+{{ end }}

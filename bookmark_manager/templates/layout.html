@@ -1,0 +1,16 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="https://unpkg.com/purecss@1.0.0/build/pure-min.css">
+</head>
+<body style="padding:0 30px;">
+<h1><a style="color:#001f3f;text-decoration:none;" href="/api/apps/bkapp/">Bookmarks</a></h1>
+{{ template "content" . }}
+<script src="https://unpkg.com/timeago.js@3.0.0/dist/timeago.min.js"></script>
+<script>
+timeago().render(document.querySelectorAll('.ago'));
+</script>
+</body>
+</html>

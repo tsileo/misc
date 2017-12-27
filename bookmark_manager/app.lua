@@ -81,11 +81,26 @@ router:post('/add', function(params)
   local form_data = app.request:form()
   local bookmarks = docstore.col(col_name)
 
+  -- Ensure the bookmark is not already saved
+  local url = form_data:get('url')
+  local docs, pointers, _ = bookmarks:query(nil, nil, function(doc)
+    if doc.url == url then
+      return true
+    end
+    return false
+  end)
+
+  if #docs > 0 then
+      local out = tpl.render('already_bookmarked.html', { url = url, docs = join(docs, pointers) })
+      app.response:write(out)
+      return
+  end
+
   -- Build the doc
   local tags = form_data:get('tags'):split(' ')
   local description = form_data:get('description')
   local doc = {
-    url = form_data:get('url'),
+    url = url,
     title = form_data:get('title'),
   }
   if tags then
@@ -96,8 +111,8 @@ router:post('/add', function(params)
   end
   bookmarks:insert(doc)
 
-  -- Redirect to the bookmarjed URL
-  app.response:redirect(form_data:get('url'))
+  -- Redirect to the bookmarked URL
+  app.response:redirect(url)
 end)
 
 router:run()

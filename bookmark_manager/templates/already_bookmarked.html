@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="https://unpkg.com/purecss@1.0.0/build/pure-min.css">
+</head>
+<body style="padding:0 30px;">
+<h1><a style="color:#001f3f;text-decoration:none;" href="/api/apps/bkapp/">Bookmarks</a></h1>
+<h2 style="color:#FF851B;">The bookmark is already present</h2>
+<p><a href="{{.url}}" class="pure-button">Go back to the URL</a></p>
+{{ range .docs }}
+<div style="margin: 30px 0;">
+    <a href="{{.url}}" style="text-decoration:none;font-size:1.2em;color:#0074D9;">{{.title}}<br>
+        <small style="color:#666;font-size:0.8em;">{{.url}}</small></a>
+<a style="text-decoration:none;color:#999;font-size:0.8em;" href="{{ .screenshot_url }}">[screenshot]</a>
+<a style="text-decoration:none;color:#999;font-size:0.8em;" href="{{ .pdf_url }}">[pdf]</a>
+{{ if .description }}
+<div style="color:#333;margin-top:5px;">{{.description}}</div>
+{{ end }}
+{{ if .tags }}
+<div style="color:#FF851B;margin-top:5px;">{{ range .tags }}#{{.}} {{ end }}</div>
+{{ end }}
+<div style="color:#666;margin-top:5px;"><span class="ago" datetime="{{._created}}">{{ ._created }}</span></div>
+</div>
+{{ end }}
+<script src="https://unpkg.com/timeago.js@3.0.0/dist/timeago.min.js"></script>
+<script>
+timeago().render(document.querySelectorAll('.ago'));
+</script>
+</body>
+</html>

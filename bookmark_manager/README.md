@@ -16,4 +16,10 @@ It's composed of two parts:
 
 ## Bookmarklet
 
-[drag and drop, and edit the location](javascript:if(document.getSelection){s=document.getSelection();}else{s='';};document.location='http://localhost:8050/api/apps/bkapp/add?url='+encodeURIComponent(location.href)+'&description='+encodeURIComponent(s)+'&title='+encodeURIComponent(document.title))
+Here is a JS snippet you can use to create a bookmarklet that will redirect you to the app with the pre-filled form, and once
+bookmarked, you will be redirected to the original page.
+
+```
+if(document.getSelection){s=document.getSelection();}else{s='';};document.location='http://localhost:8050/api/apps/bkapp/add?url='+encodeURIComponent(location.href)+'&description='+encodeURIComponent(s)+'&title='+encodeURIComponent(document.title))
+```
+

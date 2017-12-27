@@ -10,9 +10,9 @@ It's composed of two parts:
 ## Features
 
  - Bookmarks are saved in BlobStash's document store
- - Tagging support
+ - Tagging support (and tag seach by using the `#` prefix
  - Text search on the title/description field
- - Keep a PDF and PNG screenshot of every bookmarked website in case the page no longer exist
+ - Keep a PDF and PNG screenshot of every bookmarked website in case the page no longer exists
 
 ## Bookmarklet
 
@@ -22,4 +22,3 @@ bookmarked, you will be redirected to the original page.
 ```
 if(document.getSelection){s=document.getSelection();}else{s='';};document.location='http://localhost:8050/api/apps/bkapp/add?url='+encodeURIComponent(location.href)+'&description='+encodeURIComponent(s)+'&title='+encodeURIComponent(document.title))
 ```
-
